@@ -8,3 +8,4 @@ sudo apt-get install git-core monodevelop
 cd ..
 sudo apt-get install hping3
 sudo apt-get install ostinato
+git clone https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
