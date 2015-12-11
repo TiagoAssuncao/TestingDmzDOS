@@ -28,4 +28,8 @@ utilizar o ./loic run
 O sqlmap é escrito em python2.7. Para iniciá-lo:
 <br>
 python sqlmap.py -h
+<h3>Utilização do ostinato</h3>
+Para utlizá-lo, basta apenas utilizar o comando:
+
+ostinato
 
