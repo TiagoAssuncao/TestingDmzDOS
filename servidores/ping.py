@@ -25,13 +25,16 @@ def main():
     parser.add_argument('--packts','-q', default=10,type=int,
                         help='How many packts you want send.')
 
+    parser.add_argument('--timePackts','-t', default=0.1,type=float,
+                        help='Time to send a packt.')
+
     args = parser.parse_args()
 
 
     if args.run_server:
         return run_server(args.server_port)
     else:
-        return run_client(args.server_address, args.server_port, args.packts)
+        return run_client(args.server_address, args.server_port, args.packts, args.timePackts)
 
 
 
@@ -64,7 +67,7 @@ def run_server(server_port):
     return 0
 
 
-def run_client(server_address, server_port, packts):
+def run_client(server_address, server_port, packts, timePackts):
     """Ping a UDP pinger server running at the given address
     """
 
@@ -77,6 +80,7 @@ def run_client(server_address, server_port, packts):
 
 	        #Stat the time when send the data to the server
 	        start_time = time.time()
+	        time.sleep(timePackts)
 
                 # Connect to server and send data
 	        sock.sendto("".encode(), (server_address, server_port))
@@ -91,10 +95,10 @@ def run_client(server_address, server_port, packts):
 	        server_addr = d[1]
 
 	        #If the time is less than 1, print the pong
-	        if  elapsed_time < 1:
+	        if  elapsed_time < 3:
         	        print ("ping",cont, "1024 bytes", "From:", server_addr ,"RTT:"  ,round(elapsed_time*1000, 3), "ms")
 
-	        if  elapsed_time > 1:
+	        if  elapsed_time > 3:
                         print("ping",cont, "Time out")
 
 	        cont = cont + 1
